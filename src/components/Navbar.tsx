@@ -1,5 +1,7 @@
-import { FC, ReactElement, ReactNode } from 'react';
+import { FC, ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
+
+import { routes } from '../routes/routes';
 
 interface Props {
   children: ReactElement;
@@ -13,21 +15,13 @@ const Navbar: FC<Props> = ({ children }) => {
       <nav>
         <img src="vite.svg" alt="React Logo" height={100} width={100} />
         <ul>
-          <li>
-            <NavLink to="/" activeClassName="nav-active" exact>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/about" activeClassName="nav-active" exact>
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/users" activeClassName="nav-active" exact>
-              Users
-            </NavLink>
-          </li>
+          {routes.map(({ path, name }) => (
+            <li key={path}>
+              <NavLink to={path} activeClassName="nav-active" exact>
+                {name}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
       <div className="container">{children}</div>

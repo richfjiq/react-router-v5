@@ -1,39 +1,25 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
+
+import { routes } from './routes';
+import { Suspense } from 'react';
 
 const Navigation = () => {
   return (
-    <Router>
-      <Switch>
-        <Route
-          path="/about"
-          component={() => (
-            <Navbar>
-              <h1>About</h1>
-            </Navbar>
-          )}
-          exact
-        />
-        <Route
-          path="/users"
-          component={() => (
-            <Navbar>
-              <h1>Users</h1>
-            </Navbar>
-          )}
-          exact
-        />
-        <Route
-          path="/"
-          component={() => (
-            <Navbar>
-              <h1>Home</h1>
-            </Navbar>
-          )}
-          exact
-        />
-      </Switch>
-    </Router>
+    <Suspense fallback={<span>Loading...</span>}>
+      <Router>
+        <Switch>
+          {routes.map(({ path, component: Component }) => (
+            <Route key={path} path={path} render={() => <Component />} exact />
+          ))}
+          <Redirect to={routes[0].path} />
+        </Switch>
+      </Router>
+    </Suspense>
   );
 };
 
