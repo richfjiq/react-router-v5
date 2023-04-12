@@ -14,18 +14,18 @@ const Navbar: FC<Props> = ({ children }) => {
         <img src="vite.svg" alt="React Logo" height={100} width={100} />
         <ul>
           <li>
-            <NavLink to="/" activeClassName="nav-active" exact>
-              Home
+            <NavLink to="/lazy1" activeClassName="nav-active" exact>
+              Lazy 1
             </NavLink>
           </li>
           <li>
-            <NavLink to="/about" activeClassName="nav-active" exact>
-              About
+            <NavLink to="/lazy2" activeClassName="nav-active" exact>
+              Lazy 2
             </NavLink>
           </li>
           <li>
-            <NavLink to="/users" activeClassName="nav-active" exact>
-              Users
+            <NavLink to="/lazy3" activeClassName="nav-active" exact>
+              Lazy3
             </NavLink>
           </li>
         </ul>
