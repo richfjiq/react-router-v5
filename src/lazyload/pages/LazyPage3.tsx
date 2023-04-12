@@ -1,11 +1,5 @@
-import Navbar from '../../components/Navbar';
-
 const LazyPage3 = () => {
-  return (
-    <Navbar>
-      <h1>Lazy Page 3</h1>
-    </Navbar>
-  );
+  return <h1>Lazy Page 3</h1>;
 };
 
 export default LazyPage3;
