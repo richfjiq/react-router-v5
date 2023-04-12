@@ -1,16 +1,25 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 
-import { LazyPage1, LazyPage2, LazyPage3 } from '../lazyload/pages';
+import { routes } from './routes';
+import { Suspense } from 'react';
 
 const Navigation = () => {
   return (
-    <Router>
-      <Switch>
-        <Route path="/lazy1" component={() => <LazyPage1 />} exact />
-        <Route path="/lazy2" component={() => <LazyPage2 />} exact />
-        <Route path="/lazy3" component={() => <LazyPage3 />} exact />
-      </Switch>
-    </Router>
+    <Suspense fallback={<span>Loading...</span>}>
+      <Router>
+        <Switch>
+          {routes.map(({ path, component: Component }) => (
+            <Route key={path} path={path} render={() => <Component />} exact />
+          ))}
+          <Redirect to={routes[0].path} />
+        </Switch>
+      </Router>
+    </Suspense>
   );
 };
 
